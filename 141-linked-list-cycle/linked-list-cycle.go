@@ -5,23 +5,16 @@
  *     Next *ListNode
  * }
  */
-func contains(list []ListNode, node ListNode) bool {
-    for _, curNode := range list {
-        if curNode == node {
-            return true
-        }
-    }
-    return false
-}
-
 func hasCycle(head *ListNode) bool {
-    track := []ListNode{}
-    for head != nil {
-        if contains(track, *head) {
+    fast, slow := head, head
+
+	for fast != nil && fast.Next != nil {
+        if fast.Next == slow {
             return true
         }
-        track = append(track, *head)
-        head = head.Next
-    }
+		fast = fast.Next.Next
+        slow = slow.Next
+	}
+    
     return false
 }
