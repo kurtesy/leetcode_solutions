@@ -4,7 +4,7 @@ func maxDepth(s string) int {
     for _,char := range s {
         if string(char) == "(" {
             depth++
-            maxLen = max(maxLen, depth)
+            if depth > maxLen {maxLen=depth}
         } else if string(char) == ")" {
             depth--
         }
